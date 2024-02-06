@@ -15,10 +15,11 @@ type App struct {
 }
 
 func New() *App {
-	return &App{
-		router: loadRoutes(),
-		rdb:    redis.NewClient(&redis.Options{}),
+	app := &App{
+		rdb: redis.NewClient(&redis.Options{}),
 	}
+	app.loadRoutes()
+	return app
 }
 
 func (a *App) Start(ctx context.Context) error {
@@ -34,7 +35,7 @@ func (a *App) Start(ctx context.Context) error {
 
 	defer func() {
 		if err := a.rdb.Close(); err != nil {
-			fmt.Printf("failed to close redis", err)
+			fmt.Println("failed to close redis", err)
 		}
 	}()
 

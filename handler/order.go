@@ -1,11 +1,22 @@
 package handler
 
 import (
+	"context"
 	"fmt"
 	"net/http"
+
+	"github.com/abdul-rehman-d/orders-api/model"
 )
 
+type Repo interface {
+	Insert(ctx context.Context, order model.Order) error
+	GetAll(ctx context.Context) ([]model.Order, error)
+	Get(ctx context.Context, id int) (model.Order, error)
+	Update(ctx context.Context, id int, order model.Order) (model.Order, error)
+	Delete(ctx context.Context, id int) (model.Order, error)
+}
 type Order struct {
+	Repo Repo
 }
 
 func (o *Order) Create(w http.ResponseWriter, r *http.Request) {

@@ -21,3 +21,16 @@ func (r *RedisRepo) Insert(ctx context.Context, order model.Order) error {
 
 	return nil
 }
+
+func (r *RedisRepo) GetAll(ctx context.Context) ([]model.Order, error) {
+	return []model.Order{}, nil
+}
+func (r *RedisRepo) Get(ctx context.Context, id int) (model.Order, error) {
+	return model.Order{}, nil
+}
+func (r *RedisRepo) Update(ctx context.Context, id int, order model.Order) (model.Order, error) {
+	return model.Order{}, nil
+}
+func (r *RedisRepo) Delete(ctx context.Context, id int) (model.Order, error) {
+	return model.Order{}, nil
+}
